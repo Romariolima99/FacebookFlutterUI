@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_web_app/componentes/area_criar_postagem.dart';
 import 'package:my_flutter_web_app/componentes/botao_circulo.dart';
+import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -17,7 +19,7 @@ class _HomeState extends State<Home> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.white,
             // expandedHeight: 250,
             floating: true,
             centerTitle: false,
@@ -41,6 +43,13 @@ class _HomeState extends State<Home> {
                   onPressed: () {})
             ],
           ),
+
+             SliverToBoxAdapter(
+              child: AreaCriarPostagem(
+                usuario: usuarioAtual,
+              ),
+            ),
+
            SliverToBoxAdapter(
             child: Container(
               color: Colors.green,
