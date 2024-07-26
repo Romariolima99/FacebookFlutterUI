@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_web_app/componentes/area_criar_postagem.dart';
+import 'package:my_flutter_web_app/componentes/area_story.dart';
 import 'package:my_flutter_web_app/componentes/botao_circulo.dart';
 import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
@@ -49,6 +50,16 @@ class _HomeState extends State<Home> {
                 usuario: usuarioAtual,
               ),
             ),
+
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+              sliver: SliverToBoxAdapter(
+                child:AreaStoria(
+                  usuario: usuarioAtual,
+                  estorias: estorias,
+                ) ,
+              ),
+              ),
 
            SliverToBoxAdapter(
             child: Container(
