@@ -16,7 +16,7 @@ import 'package:my_flutter_web_app/modelos/modelos.dart';
 /* Usuário Logado */
 Usuario usuarioAtual = Usuario(
     nome: "Jamilton Damasceno",
-    urlImagem: "https://images.unsplash.com/photo-1593642532973-d31b6557fa68"
+    urlImagem: "https://images.unsplash.com/photo-1498050108023-c5249f4df085"
 );
 
 /* Lista de usuários online */
