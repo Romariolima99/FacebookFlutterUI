@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter_web_app/componentes/area_criar_postagem.dart';
 import 'package:my_flutter_web_app/componentes/area_story.dart';
 import 'package:my_flutter_web_app/componentes/botao_circulo.dart';
+import 'package:my_flutter_web_app/componentes/cartao_postagem.dart';
 import 'package:my_flutter_web_app/dados/dados.dart';
+import 'package:my_flutter_web_app/modelos/modelos.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -35,39 +37,38 @@ class _HomeState extends State<Home> {
             ),
             actions: [
               BotaoCirculo(
-                  icone: Icons.search,
-                  iconeTamanho: 30,
-                  onPressed: () {}),
+                  icone: Icons.search, iconeTamanho: 30, onPressed: () {}),
               BotaoCirculo(
                   icone: LineIcons.facebookMessenger,
                   iconeTamanho: 30,
                   onPressed: () {})
             ],
           ),
-
-             SliverToBoxAdapter(
-              child: AreaCriarPostagem(
+          SliverToBoxAdapter(
+            child: AreaCriarPostagem(
+              usuario: usuarioAtual,
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+            sliver: SliverToBoxAdapter(
+              child: AreaStoria(
                 usuario: usuarioAtual,
+                estorias: estorias,
               ),
             ),
-
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-              sliver: SliverToBoxAdapter(
-                child:AreaStoria(
-                  usuario: usuarioAtual,
-                  estorias: estorias,
-                ) ,
-              ),
-              ),
-
-           SliverToBoxAdapter(
-            child: Container(
-              color: Colors.green,
-              height: 2000,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, indice) {
+                Postagem postagem = postagens[indice];
+                return CartaoPostagem(
+                  postagem: postagem,
+                );
+              },
+              childCount: postagens.length,
             ),
-           ),
-
+          )
         ],
       ),
     );

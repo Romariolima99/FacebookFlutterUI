@@ -7,10 +7,10 @@ class ImagemPerfil extends StatelessWidget {
   final bool foiVisualizado;
 
   const ImagemPerfil({
-    Key? key,
+    super.key,
     required this.urlImagem,
     this.foiVisualizado = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
