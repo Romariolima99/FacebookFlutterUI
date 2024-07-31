@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:my_flutter_web_app/componentes/imagem_perfil.dart';
 import 'package:my_flutter_web_app/modelos/Postagem.dart';
+import 'package:my_flutter_web_app/uteis/paletasCores.dart';
 
 class CartaoPostagem extends StatelessWidget {
   final Postagem postagem;
@@ -11,6 +13,9 @@ class CartaoPostagem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
+      margin: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(vertical: 8),
       child: Column(
         children: [
           //cabeçalho
@@ -35,13 +40,130 @@ class CartaoPostagem extends StatelessWidget {
           ),
 
           //estatisticas da postagem
-          Container(
-            color: Colors.red,
-            width: 100,
-            height: 100,
-          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: EstatisticasPostagem(
+              postagem: postagem,
+            ),
+          )
         ],
       ),
+    );
+  }
+}
+
+class EstatisticasPostagem extends StatelessWidget {
+  final Postagem postagem;
+
+  const EstatisticasPostagem({Key? key, required this.postagem})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                  color: PaletaCores.azulfFacebook, shape: BoxShape.circle),
+              child: Icon(
+                Icons.thumb_up,
+                size: 15,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Text(
+                "${postagem.curtidas}",
+                style: TextStyle(color: Colors.grey[700]),
+              ),
+            ),
+            Text(
+              "${postagem.comentarios} comentarios",
+              style: TextStyle(color: Colors.grey[700]),
+            ),
+            SizedBox(width: 8),
+            Text(
+              "${postagem.compartilhamentos} compartilhamentos",
+              style: TextStyle(color: Colors.grey[700]),
+            )
+          ],
+        ),
+        Divider(
+          thickness: 1.2,
+        ),
+        Row(
+          children: [
+            BotaoPostagem(
+              icone: Icon(
+                LineIcons.thumbsUpAlt,
+                color: Colors.grey[700],
+              ),
+              texto: "Curtir",
+              onTap: () {},
+            ),
+            BotaoPostagem(
+              icone: Icon(
+                LineIcons.alternateCommentAlt,
+                color: Colors.grey[700],
+              ),
+              texto: "comentar",
+              onTap: () {},
+            ),
+            BotaoPostagem(
+              icone: Icon(
+                LineIcons.share,
+                color: Colors.grey[700],
+              ),
+              texto: "Compartilhar",
+              onTap: () {},
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class BotaoPostagem extends StatelessWidget {
+  final Icon icone;
+  final String texto;
+  final VoidCallback onTap;
+
+  const BotaoPostagem({
+    Key? key,
+    required this.icone,
+    required this.texto,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      //revisar aula 41, ação do botão
+      child: InkWell(
+      onTap: onTap,
+      child: Container(
+        child: Row(
+          children: [
+            icone,
+            const SizedBox(
+              width: 4,
+            ),
+            Text(
+              texto,
+              style: TextStyle(
+                  color: Colors.grey[700], fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    ),
     );
   }
 }
@@ -64,28 +186,29 @@ class CabecalhoPostagem extends StatelessWidget {
         ),
 
         //informações do usuario
-      Expanded(
-      child:  Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              postagem.usuario.nome,
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-            Row(
-              children: [
-                Text(
-                  "${postagem.tempoAtras} - "
-                ),
-                Icon(Icons.public, size: 12, color: Colors.grey[600],)
-              ],
-            )
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                postagem.usuario.nome,
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+              Row(
+                children: [
+                  Text("${postagem.tempoAtras} - "),
+                  Icon(
+                    Icons.public,
+                    size: 12,
+                    color: Colors.grey[600],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
 
-      ),
-       
         IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz))
       ],
     );
