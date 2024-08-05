@@ -37,11 +37,13 @@ class _HomeState extends State<Home> {
             ),
             actions: [
               BotaoCirculo(
-                  icone: Icons.search, iconeTamanho: 30, onPressed: () {}),
+                  icone: Icons.search, iconeTamanho: 30, onPressed: () {}
+                  ),
               BotaoCirculo(
                   icone: LineIcons.facebookMessenger,
                   iconeTamanho: 30,
-                  onPressed: () {})
+                  onPressed: () {}
+                  )
             ],
           ),
           SliverToBoxAdapter(

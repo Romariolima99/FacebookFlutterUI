@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:my_flutter_web_app/componentes/navegacao_abas.dart';
 import 'package:my_flutter_web_app/componentes/navegacao_abas_desktop.dart';
+import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/telas/home.dart';
 import 'package:my_flutter_web_app/uteis/responsivo.dart';
 
@@ -63,7 +64,17 @@ int _indiceAbaSelecionada = 0;
         appBar: isDesktop 
          ? PreferredSize(
           preferredSize: Size(tamanho.width , 100),
-          child: NavegacaoAbasDesktop(),
+          child: NavegacaoAbasDesktop(
+            usuario: usuarioAtual,
+            icones: _icones,
+            indiceAbaSelecionada: _indiceAbaSelecionada,
+            onTap: (indice){
+              setState(() {
+                _indiceAbaSelecionada  = indice;
+              });
+            },
+
+          ),
           )
          : null,
 
