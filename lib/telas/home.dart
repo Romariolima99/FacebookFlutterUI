@@ -7,6 +7,7 @@ import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/modelos/modelos.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:my_flutter_web_app/uteis/responsivo.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,8 +19,27 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
+    return const Scaffold(
+      body: Responsivo(
+        mobile: HomeMobile(),
+        desktop: HomeDesktop(),
+        // tablet: HomeTablet(),
+      ),
+    );
+  }
+}
+
+
+class HomeMobile extends StatelessWidget {
+  const HomeMobile({
+    super.key
+    
+    
+    });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.white,
@@ -27,7 +47,7 @@ class _HomeState extends State<Home> {
             floating: true,
             centerTitle: false,
             title: const Text(
-              "Facebook",
+              "Facebook-M",
               style: TextStyle(
                 color: PaletaCores.azulfFacebook,
                 fontWeight: FontWeight.bold,
@@ -72,7 +92,86 @@ class _HomeState extends State<Home> {
             ),
           )
         ],
-      ),
-    );
+      );
   }
 }
+
+
+class HomeDesktop extends StatelessWidget {
+  const HomeDesktop({
+    super.key
+    
+    });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+        slivers: [
+           SliverPadding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+            sliver: SliverToBoxAdapter(
+              child: AreaStoria(
+                usuario: usuarioAtual,
+                estorias: estorias,
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: AreaCriarPostagem(
+              usuario: usuarioAtual,
+            ),
+          ),
+         
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, indice) {
+                Postagem postagem = postagens[indice];
+                return CartaoPostagem(
+                  postagem: postagem,
+                );
+              },
+              childCount: postagens.length,
+            ),
+          )
+        ],
+      );
+  }
+}
+
+// class HomeTablet extends StatelessWidget {
+//   const HomeTablet({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return CustomScrollView(
+//         slivers: [
+//            SliverPadding(
+//             padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+//             sliver: SliverToBoxAdapter(
+//               child: AreaStoria(
+//                 usuario: usuarioAtual,
+//                 estorias: estorias,
+//               ),
+//             ),
+//           ),
+//           SliverToBoxAdapter(
+//             child: AreaCriarPostagem(
+//               usuario: usuarioAtual,
+//             ),
+//           ),
+         
+//           SliverList(
+//             delegate: SliverChildBuilderDelegate(
+//               (context, indice) {
+//                 Postagem postagem = postagens[indice];
+//                 return CartaoPostagem(
+//                   postagem: postagem,
+//                 );
+//               },
+//               childCount: postagens.length,
+//             ),
+//           )
+//         ],
+//       );
+//   }
+// }

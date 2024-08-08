@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class Responsivo extends StatelessWidget {
-  const Responsivo({super.key});
+
+final Widget mobile;
+final Widget? tablet;
+final Widget desktop;
+
+
+  const Responsivo({
+    Key? key,
+
+    required this.mobile,
+    required this.desktop,
+    this.tablet,
+    
+    
+    }): super(key: key);
 
   static bool isMobile(BuildContext context) {
     return MediaQuery.of(context).size.width < 800;
@@ -18,6 +33,21 @@ class Responsivo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return LayoutBuilder(
+      builder: (context , constraints){
+        if(constraints.maxWidth >= 1200){
+          return desktop;
+        }else if(constraints.maxWidth >= 800 ){
+          Widget? resTablet = this.tablet;
+          if(resTablet != null){
+            return resTablet;
+          }
+          return this.mobile;
+        }else{
+          return mobile;
+        }
+
+      }
+      );
   }
 }
