@@ -3,6 +3,7 @@ import 'package:my_flutter_web_app/componentes/area_criar_postagem.dart';
 import 'package:my_flutter_web_app/componentes/area_story.dart';
 import 'package:my_flutter_web_app/componentes/botao_circulo.dart';
 import 'package:my_flutter_web_app/componentes/cartao_postagem.dart';
+import 'package:my_flutter_web_app/componentes/lista_contatos.dart';
 import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/modelos/modelos.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
@@ -47,7 +48,7 @@ class HomeMobile extends StatelessWidget {
             floating: true,
             centerTitle: false,
             title: const Text(
-              "Facebook-M",
+              "Facebook",
               style: TextStyle(
                 color: PaletaCores.azulfFacebook,
                 fontWeight: FontWeight.bold,
@@ -105,7 +106,15 @@ class HomeDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return Row(
+      children: [
+        Flexible(
+          flex: 2,
+          child: Container(color: Colors.red)),
+        const Spacer(),
+        Flexible(
+          flex: 4,
+          child: CustomScrollView(
         slivers: [
            SliverPadding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
@@ -134,7 +143,20 @@ class HomeDesktop extends StatelessWidget {
             ),
           )
         ],
-      );
+      )
+      ),
+      const Spacer(),
+        Flexible(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ListaContatos(
+              usuarios: usuariosOnline,
+            ),
+          )
+        ),
+      ],
+    );
   }
 }
 
