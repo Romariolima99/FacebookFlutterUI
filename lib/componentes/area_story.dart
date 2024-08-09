@@ -8,6 +8,7 @@ import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/modelos/estoria.dart';
 import 'package:my_flutter_web_app/modelos/usuario.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
+import 'package:my_flutter_web_app/uteis/responsivo.dart';
 
 class AreaStoria extends StatelessWidget {
   final Usuario usuario;
@@ -21,9 +22,10 @@ class AreaStoria extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDesktop = Responsivo.isDesktop(context);
     return Container(
       height: 200,
-      color: Colors.white,
+      color: isDesktop ? Colors.transparent: Colors.white,
       child: ListView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           scrollDirection: Axis.horizontal,

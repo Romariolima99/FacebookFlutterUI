@@ -4,6 +4,7 @@ import 'package:my_flutter_web_app/componentes/area_story.dart';
 import 'package:my_flutter_web_app/componentes/botao_circulo.dart';
 import 'package:my_flutter_web_app/componentes/cartao_postagem.dart';
 import 'package:my_flutter_web_app/componentes/lista_contatos.dart';
+import 'package:my_flutter_web_app/componentes/lista_opcoes.dart';
 import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/modelos/modelos.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
@@ -18,29 +19,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+final TrackingScrollController _scrollController = TrackingScrollController();
+
+@override
+  void dispose() {
+   _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
       body: Responsivo(
-        mobile: HomeMobile(),
-        desktop: HomeDesktop(),
+        mobile: HomeMobile(scrollController: _scrollController,),
+        desktop: HomeDesktop(scrollController: _scrollController,),
         // tablet: HomeTablet(),
       ),
-    );
+    ),);
   }
 }
 
 
 class HomeMobile extends StatelessWidget {
+
+  final TrackingScrollController scrollController;
+
+
   const HomeMobile({
-    super.key
+    super.key,
     
+    required this.scrollController,
     
     });
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      controller: scrollController,
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.white,
@@ -99,10 +117,15 @@ class HomeMobile extends StatelessWidget {
 
 
 class HomeDesktop extends StatelessWidget {
+
+  final TrackingScrollController scrollController;
+
   const HomeDesktop({
-    super.key
+    Key? key,
+
+    required this.scrollController,
     
-    });
+    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +133,18 @@ class HomeDesktop extends StatelessWidget {
       children: [
         Flexible(
           flex: 2,
-          child: Container(color: Colors.red)),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ListaOpcoes(
+              usuario: usuarioAtual,
+            ),
+          )
+          ),
         const Spacer(),
         Flexible(
           flex: 4,
           child: CustomScrollView(
+         controller: scrollController,
         slivers: [
            SliverPadding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),

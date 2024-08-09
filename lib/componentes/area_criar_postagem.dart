@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter_web_app/dados/dados.dart';
 import 'package:my_flutter_web_app/modelos/usuario.dart';
+import 'package:my_flutter_web_app/uteis/responsivo.dart';
 
 class AreaCriarPostagem extends StatelessWidget {
   final Usuario usuario;
@@ -10,9 +11,20 @@ class AreaCriarPostagem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+     bool isDesktop = Responsivo.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: isDesktop ? 5 : 0
+      ),
+      elevation: isDesktop ? 1 : 0,
+      shape: isDesktop
+        ? RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        )
+        : null  ,
+      child: Container(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-      color: Colors.white,
       child: Column(
         children: [
           Row(
@@ -87,6 +99,7 @@ class AreaCriarPostagem extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

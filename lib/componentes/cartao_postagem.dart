@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:my_flutter_web_app/componentes/imagem_perfil.dart';
 import 'package:my_flutter_web_app/modelos/Postagem.dart';
 import 'package:my_flutter_web_app/uteis/paletasCores.dart';
+import 'package:my_flutter_web_app/uteis/responsivo.dart';
 
 class CartaoPostagem extends StatelessWidget {
   final Postagem postagem;
@@ -12,7 +13,19 @@ class CartaoPostagem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+      bool isDesktop = Responsivo.isDesktop(context);
+    return Card(
+      margin: EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: isDesktop ? 5 : 0
+      ),
+      elevation: isDesktop ? 1 : 0,
+      shape: isDesktop
+        ? RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+        )
+        : null  ,
+      child: Container(
       color: Colors.white,
       margin: EdgeInsets.symmetric(vertical: 8),
       padding: EdgeInsets.symmetric(vertical: 8),
@@ -48,6 +61,7 @@ class CartaoPostagem extends StatelessWidget {
           )
         ],
       ),
+    ),
     );
   }
 }
