@@ -1,4 +1,4 @@
-# my_flutter_web_app
+# FacebookFlutterUI
 
 A new Flutter project.
 
@@ -14,3 +14,41 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Facebook Clone - FacebookFlutterUI
+
+Este projeto é um clone da interface do Facebook, desenvolvido em Flutter. Ele possui uma interface responsiva que se adapta a diferentes tamanhos de tela, desde dispositivos móveis até desktops. O objetivo deste projeto é praticar o desenvolvimento de interfaces responsivas em Flutter e aprender a construir uma UI complexa inspirada no Facebook.
+
+## Funcionalidades
+
+- Design responsivo que se adapta a diferentes dispositivos (celulares, tablets e desktops).
+- Barra de navegação semelhante ao Facebook.
+- Seção de feed com postagens e interações.
+- Layout com colunas e cartões para dispositivos maiores.
+- Estilo visual inspirado na interface do Facebook.
+
+## Demonstração
+
+### Mobile
+<img src="link_da_imagem_mobile.png" alt="Mobile Screenshot" width="300"/>
+
+### Tablet
+<img src="link_da_imagem_tablet.png" alt="Tablet Screenshot" width="400"/>
+
+### Desktop
+<img src="link_da_imagem_desktop.png" alt="Desktop Screenshot" width="600"/>
+
+## Tecnologias Utilizadas
+
+- **Flutter**: O framework principal utilizado para construir a interface.
+- **Dart**: A linguagem de programação utilizada no Flutter.
+<!-- - **Provider**: Gerenciamento de estado simples e eficiente. -->
+- **Responsive Framework**: Para lidar com as diferentes larguras de tela e responsividade.
+
+## Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/facebook-clone-flutter.git
+
