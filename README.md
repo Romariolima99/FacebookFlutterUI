@@ -30,13 +30,13 @@ Este projeto é um clone da interface do Facebook, desenvolvido em Flutter. Ele 
 ## Demonstração
 
 ### Mobile
-<img src="https://i.imgur.com/qLAxveL.png" alt="Mobile Screenshot" width="300"/>
+<img src="https://i.imgur.com/feSa1I4.png" alt="Mobile Screenshot" width="300"/> 
 
 ### Tablet
 <img src="link_da_imagem_tablet.png" alt="Tablet Screenshot" width="400"/>
 
 ### Desktop
-<img src="https://i.imgur.com/feSa1I4.png" alt="Desktop Screenshot" width="600"/>
+<img src="https://i.imgur.com/qLAxveL.png" alt="Desktop Screenshot" width="600"/>
 
 ## Tecnologias Utilizadas
 
